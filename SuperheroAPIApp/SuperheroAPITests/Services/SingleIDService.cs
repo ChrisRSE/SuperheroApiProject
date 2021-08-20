@@ -24,13 +24,10 @@ namespace SuperheroAPITests.Services
             CallManager = new CallManager();
             SingleIdDTO = new DTO<ID>();
         }
+
         public async Task MakeRequestAsync(int id)
         {
             IdResponse = await CallManager.MakeIdRequestAsync(id);
-
-        public async Task MakeRequestAsync(string id)
-        {
-            IdResponse = await CallManager.MakeIdRequestASync(id);
             Json_response = JObject.Parse(IdResponse);
             SingleIdDTO.DeserializeResponse(IdResponse);
         }
