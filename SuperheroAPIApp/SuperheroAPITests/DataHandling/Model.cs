@@ -9,7 +9,7 @@ namespace SuperheroAPITests.DataHandling
     public class Model
     {
 
-        public class ID
+        public class ID : IResponse
         {
             public string response { get; set; }
             public string id { get; set; }
