@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SuperheroAPITests.Services
+namespace SuperheroAPITests.DataHandling
 {
-    class BulkIDService
+    public class DTO
     {
     }
 }
