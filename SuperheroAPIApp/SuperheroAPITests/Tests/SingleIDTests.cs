@@ -63,6 +63,7 @@ namespace SuperheroAPITests.Tests
         public void ReturnsCorrectSuperhero_WhenValidIDIsGiven()
         {
             Assert.That(_superheroGoodService.Json_response["name"].ToString(), Is.EqualTo("Batman"));
+            Assert.That(_superheroGoodService.SingleIdDTO.Response.name, Is.EqualTo("Batman"));
         }
 
 
@@ -78,6 +79,7 @@ namespace SuperheroAPITests.Tests
         public void ReturnsCorrectImage_WhenValidIsGiven()
         {
             Assert.That(_superheroGoodService.Json_response["image"]["url"].ToString(), Is.EqualTo(@"https://www.superherodb.com/pictures2/portraits/10/100/10441.jpg"));
+            Assert.That(_superheroGoodService.SingleIdDTO.Response.image.url, Is.EqualTo(@"https://www.superherodb.com/pictures2/portraits/10/100/10441.jpg"));
         }
 
 
@@ -87,7 +89,10 @@ namespace SuperheroAPITests.Tests
         {
             Assert.That(_superheroGoodService.Json_response["appearance"]["gender"].ToString(), Is.EqualTo("Male"));
             Assert.That(_superheroGoodService.Json_response["appearance"]["race"].ToString(), Is.EqualTo("Human"));
-            Assert.That(_superheroGoodService.Json_response["appearance"]["race"].ToString(), Is.EqualTo("Human"));
+
+            Assert.That(_superheroGoodService.SingleIdDTO.Response.appearance.gender, Is.EqualTo("Male"));
+            Assert.That(_superheroGoodService.SingleIdDTO.Response.appearance.race, Is.EqualTo("Human"));
+
         }
     }
 }
