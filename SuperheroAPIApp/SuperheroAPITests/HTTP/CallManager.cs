@@ -25,5 +25,15 @@ namespace SuperheroAPITests.HTTP
             Status = (int)response.StatusCode;
             return response.Content;
         }
+
+        public async Task<string> MakeNameRequestAsync(string name)
+        {
+            var request = new RestRequest();
+            request.AddHeader("Content-Type", "application/json");
+            request.Resource = $"search/{name.ToLower()}";
+            var response = await _client.ExecuteAsync(request);
+            Status = (int)response.StatusCode;
+            return response.Content;
+        }
     }
 }
