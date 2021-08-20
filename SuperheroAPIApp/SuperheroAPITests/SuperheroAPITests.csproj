@@ -93,7 +93,7 @@
     <Compile Include="Services\SingleIDService.cs" />
     <Compile Include="Services\NameService.cs" />
     <Compile Include="Tests\NameTests.cs" />
-    <Compile Include="Tests\PowerstatsServiceTests.cs" />
+    <Compile Include="Tests\PowerstatsTests.cs" />
     <Compile Include="Tests\SingleIDTests.cs" />
   </ItemGroup>
   <ItemGroup>
