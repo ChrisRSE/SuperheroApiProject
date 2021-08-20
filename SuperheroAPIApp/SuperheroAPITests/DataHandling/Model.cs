@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SuperheroAPITests.DataHandling
 {
+
     public class ID : IResponse
     {
         public string response { get; set; }
@@ -18,6 +19,7 @@ namespace SuperheroAPITests.DataHandling
         public Connections connections { get; set; }
         public Image image { get; set; }
     }
+
 
     public class Name : IResponse
     {
@@ -81,8 +83,10 @@ namespace SuperheroAPITests.DataHandling
         public string relatives { get; set; }
     }
 
+
     public class Image
     {
         public string url { get; set; }
     }
+
 }
