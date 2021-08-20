@@ -1,17 +1,18 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using SuperheroAPITests.DataHandling;
+using SuperheroAPITests.HTTP;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static SuperheroAPITests.DataHandling.Model;
 
 namespace SuperheroAPITests.Services
 {
     public class SingleIDService
     {
-<<<<<<< Updated upstream
-=======
         #region Properties
-
         public CallManager CallManager { get; set; }
         public JObject Json_response { get; set; }
         public DTO<ID> SingleIdDTO { get; set; }
@@ -23,14 +24,16 @@ namespace SuperheroAPITests.Services
             CallManager = new CallManager();
             SingleIdDTO = new DTO<ID>();
         }
-
         public async Task MakeRequestAsync(int id)
         {
             IdResponse = await CallManager.MakeIdRequestAsync(id);
+
+        public async Task MakeRequestAsync(string id)
+        {
+            IdResponse = await CallManager.MakeIdRequestASync(id);
             Json_response = JObject.Parse(IdResponse);
             SingleIdDTO.DeserializeResponse(IdResponse);
-
         }
->>>>>>> Stashed changes
+
     }
 }
