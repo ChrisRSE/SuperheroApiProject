@@ -35,5 +35,15 @@ namespace SuperheroAPITests.HTTP
             Status = (int)response.StatusCode;
             return response.Content;
         }
+
+        public async Task<string> MakePowerstatRequest(int id)
+        {
+            var request = new RestRequest();
+            request.AddHeader("Content-Type", "application/json");
+            request.Resource = $"{id}/powerstats";
+            var response = await _client.ExecuteAsync(request);
+            Status = (int)response.StatusCode;
+            return response.Content;
+        }
     }
 }
