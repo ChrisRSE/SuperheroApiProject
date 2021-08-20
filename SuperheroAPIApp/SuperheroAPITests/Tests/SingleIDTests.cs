@@ -50,7 +50,6 @@ namespace SuperheroAPITests.Tests
             Assert.That(_superheroBadService.Json_response["error"].ToString(), Is.EqualTo("invalid id"));
         }
 
-
         [Test]
         [Category("Sad Path")]
         public void StatusIsDefault0_WhenNoValueIsPassed()
@@ -76,9 +75,19 @@ namespace SuperheroAPITests.Tests
 
         [Test]
         [Category("Happy Path")]
-        public void ReturnsCorrectImage_WhenValidI()
+        public void ReturnsCorrectImage_WhenValidIsGiven()
         {
             Assert.That(_superheroGoodService.Json_response["image"]["url"].ToString(), Is.EqualTo(@"https://www.superherodb.com/pictures2/portraits/10/100/10441.jpg"));
+        }
+
+
+        [Test]
+        [Category("Happy Path")]
+        public void ReturnsCorrectAppearanceDetails_WhenValidIsGiven()
+        {
+            Assert.That(_superheroGoodService.Json_response["appearance"]["gender"].ToString(), Is.EqualTo("Male"));
+            Assert.That(_superheroGoodService.Json_response["appearance"]["race"].ToString(), Is.EqualTo("Human"));
+            Assert.That(_superheroGoodService.Json_response["appearance"]["race"].ToString(), Is.EqualTo("Human"));
         }
     }
 }
