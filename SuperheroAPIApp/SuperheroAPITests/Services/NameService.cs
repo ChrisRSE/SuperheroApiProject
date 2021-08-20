@@ -36,6 +36,15 @@ namespace SuperheroAPITests.Services
             NameDTO.DeserializeResponse(NameResponse);
         }
 
+        public int CountNumberOfCharatcterVersions()
+        {
+            var count = 0;
+            foreach (var id in Json_Response["results"])
+            {
+                count++;
+            }
+            return count;
+        }
 
     }
 }
