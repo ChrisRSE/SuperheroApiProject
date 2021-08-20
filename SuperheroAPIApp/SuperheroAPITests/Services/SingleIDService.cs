@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SuperheroAPITests.Services
 {
-    class IDService
+    public class SingleIDService
     {
     }
 }
