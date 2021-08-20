@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SuperheroAPITests.Tests
+namespace SuperheroAPITests.DataHandling
 {
-    class BulkIDTests
+    public interface IResponse
     {
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SuperheroAPITests.HTTP
 {
-    class CallManager
+    public class CallManager
     {
     }
 }
