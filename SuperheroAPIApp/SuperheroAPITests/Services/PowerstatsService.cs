@@ -27,7 +27,7 @@ namespace SuperheroAPITests.Services
 
         public async Task MakeRequestAsync(int id)
         {
-            PowerstatResponse = await CallManager.MakePowerstatRequest(id);
+            PowerstatResponse = await CallManager.MakePowerstatRequestAsync(id);
             Json_response = JObject.Parse(PowerstatResponse);
             PowerstatDTO.DeserializeResponse(PowerstatResponse);
         }
