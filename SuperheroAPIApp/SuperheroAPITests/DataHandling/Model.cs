@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace SuperheroAPITests.DataHandling
 {
-    public class Model
-    {
+    
 
         public class ID : IResponse
         {
@@ -89,5 +88,5 @@ namespace SuperheroAPITests.DataHandling
             public string url { get; set; }
         }
 
-    }
+    
 }
