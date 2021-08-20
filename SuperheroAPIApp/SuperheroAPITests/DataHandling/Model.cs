@@ -9,7 +9,7 @@ namespace SuperheroAPITests.DataHandling
     public class Model
     {
 
-        public class ID
+        public class ID : IResponse
         {
             public string response { get; set; }
             public string id { get; set; }
@@ -22,7 +22,7 @@ namespace SuperheroAPITests.DataHandling
             public Image image { get; set; }
         }
 
-        public class Name
+        public class Name : IResponse
         {
             public string response { get; set; }
             public string resultsfor { get; set; }
@@ -41,7 +41,7 @@ namespace SuperheroAPITests.DataHandling
             public Image image { get; set; }
         }
 
-        public class Powerstats
+        public class Powerstats : IResponse
         {
             public string intelligence { get; set; }
             public string strength { get; set; }
