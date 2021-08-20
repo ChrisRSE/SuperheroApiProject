@@ -36,7 +36,7 @@ namespace SuperheroAPITests.HTTP
             return response.Content;
         }
 
-        public async Task<string> MakePowerstatRequest(int id)
+        public async Task<string> MakePowerstatRequestAsync(int id)
         {
             var request = new RestRequest();
             request.AddHeader("Content-Type", "application/json");
