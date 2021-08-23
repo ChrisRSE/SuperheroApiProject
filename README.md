@@ -1,6 +1,26 @@
+# Project Goals
+
+- To develop a complete API testing framework, using https://superheroapi.com/.
+- Use Github Repo to work collaboratively.
+- Work within a scrum framework, using a project board, including user stories and test cases.
+
+# Sprint 1
+
+### Start
+![](https://github.com/ChrisRSE/SuperheroApiProject/blob/main/Images/Day0%20Board.PNG)
+
+### End
+![](https://github.com/ChrisRSE/SuperheroApiProject/blob/main/Images/Day1%End.PNG)
+
+# Sprint 2
+
+### Start
+![](https://github.com/ChrisRSE/SuperheroApiProject/blob/main/Images/Day2%Start.PNG)
+
+### End
+![](https://github.com/ChrisRSE/SuperheroApiProject/blob/main/Images/Day2%End.PNG)
+
 # Overall Retrospective
-
-
 
 ### Mood
 
