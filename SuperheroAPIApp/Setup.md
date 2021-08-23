@@ -3,7 +3,8 @@
 ### Task 1 - Installing Visual Studios
 
 Install Visual studios 2019 from https://visualstudio.microsoft.com/downloads/.
-1[](/Images/All%20tests%20pass.png)
+
+![](/Images/All%20tests%20pass.png)
 
 Ensure that you then download the latest version available.
 
