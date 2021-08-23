@@ -10,15 +10,15 @@
 ![](https://github.com/ChrisRSE/SuperheroApiProject/blob/main/Images/Day0%20Board.PNG)
 
 ### End
-![](https://github.com/ChrisRSE/SuperheroApiProject/blob/main/Images/Day1%End.PNG)
+![](https://github.com/ChrisRSE/SuperheroApiProject/blob/main/Images/Day1End.PNG)
 
 # Sprint 2
 
 ### Start
-![](https://github.com/ChrisRSE/SuperheroApiProject/blob/main/Images/Day2%Start.PNG)
+![](https://github.com/ChrisRSE/SuperheroApiProject/blob/main/Images/Day2Start.PNG)
 
 ### End
-![](https://github.com/ChrisRSE/SuperheroApiProject/blob/main/Images/Day2%End.PNG)
+![](https://github.com/ChrisRSE/SuperheroApiProject/blob/main/Images/Day2End.PNG)
 
 # Overall Retrospective
 
