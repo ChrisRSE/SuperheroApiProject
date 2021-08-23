@@ -12,6 +12,7 @@ namespace SuperheroAPITests.HTTP
     {
         private readonly IRestClient _client;
         public int Status { get; set; }
+        public List<Parameter> HeaderResponse { get; set; }
         public CallManager()
         {
             _client = new RestClient(AppConfigReader.BaseUrl);
@@ -23,6 +24,7 @@ namespace SuperheroAPITests.HTTP
             request.Resource = $"{Id}";
             var response = await _client.ExecuteAsync(request);
             Status = (int)response.StatusCode;
+            HeaderResponse = response.Headers.ToList();
             return response.Content;
         }
 
@@ -33,6 +35,7 @@ namespace SuperheroAPITests.HTTP
             request.Resource = $"search/{name.ToLower().Trim()}";
             var response = await _client.ExecuteAsync(request);
             Status = (int)response.StatusCode;
+            HeaderResponse = response.Headers.ToList();
             return response.Content;
         }
 
@@ -43,6 +46,7 @@ namespace SuperheroAPITests.HTTP
             request.Resource = $"{id}/powerstats";
             var response = await _client.ExecuteAsync(request);
             Status = (int)response.StatusCode;
+            HeaderResponse = response.Headers.ToList();
             return response.Content;
         }
     }
