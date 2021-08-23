@@ -26,11 +26,6 @@ namespace SuperheroAPITests.HTTP
             var response = await _client.ExecuteAsync(request);
             Status = (int)response.StatusCode;
             HeaderResponse = response.Headers.ToList();
-            foreach (var item in HeaderResponse)
-            {
-                Debug.WriteLine(item.ToString());
-            }
-            return response.Content;
         }
 
         public async Task<string> MakeNameRequestAsync(string name)

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using SuperheroAPITests.Services;
@@ -12,6 +9,8 @@ namespace SuperheroAPITests.Tests
     {
         NameService  _nameGoodService;
         NameService _nameBadService;
+
+        #region 0. Set Up
         [OneTimeSetUp]
         public async Task OneTimeSetupAsync()
         {
@@ -20,6 +19,7 @@ namespace SuperheroAPITests.Tests
             _nameBadService = new NameService();
             await _nameBadService.MakeRequestAsync("-0fgh");
         }
+        #endregion
 
         #region 1. Verify correct HTTP status code
         [Test]
@@ -179,7 +179,5 @@ namespace SuperheroAPITests.Tests
 
 
         #endregion
-
-
     }
 }
