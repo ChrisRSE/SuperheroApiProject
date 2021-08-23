@@ -26,10 +26,13 @@ Right click the file and click to Extract the file and move towards a more suita
 
 Open the "SuperheroAPI App.sln" file using Visual Studio
 ![](/Images/Opening%20with%20VS.png)
+-Build the solution
 
 ![](/Images/Building%20the%20solution.png)
+-Run the test by right clicking the folder Test and Run All
 
 ![](/Images/Run%20all%20Tests.png)
+Check if all the tests have passed
 
 ![](/Images/All%20tests%20pass.png)
 
