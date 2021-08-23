@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,8 @@ namespace SuperheroAPITests.DataHandling
     public class Name : IResponse
     {
         public string response { get; set; }
+
+        [JsonProperty("results-for")]
         public string resultsfor { get; set; }
         public Result[] results { get; set; }
     }
@@ -51,11 +54,18 @@ namespace SuperheroAPITests.DataHandling
     }
 
     public class Biography
-    {
+    { 
+        [JsonProperty("full-name")]
         public string fullname { get; set; }
+
+        [JsonProperty("alter-egos")]
         public string alteregos { get; set; }
         public string[] aliases { get; set; }
+
+        [JsonProperty("place-of-birth")]
         public string placeofbirth { get; set; }
+
+        [JsonProperty("first-appearance")]
         public string firstappearance { get; set; }
         public string publisher { get; set; }
         public string alignment { get; set; }
@@ -67,7 +77,9 @@ namespace SuperheroAPITests.DataHandling
         public string race { get; set; }
         public string[] height { get; set; }
         public string[] weight { get; set; }
+        [JsonProperty("eye-color")]
         public string eyecolor { get; set; }
+        [JsonProperty("hair-color")]
         public string haircolor { get; set; }
     }
 
@@ -79,6 +91,7 @@ namespace SuperheroAPITests.DataHandling
 
     public class Connections
     {
+        [JsonProperty("group-affiliation")]
         public string groupaffiliation { get; set; }
         public string relatives { get; set; }
     }
