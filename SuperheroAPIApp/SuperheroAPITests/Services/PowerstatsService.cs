@@ -31,5 +31,6 @@ namespace SuperheroAPITests.Services
             Json_response = JObject.Parse(PowerstatResponse);
             PowerstatDTO.DeserializeResponse(PowerstatResponse);
         }
+
     }
 }

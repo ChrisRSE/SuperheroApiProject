@@ -88,11 +88,13 @@
     <Compile Include="DataHandling\IResponse.cs" />
     <Compile Include="DataHandling\Model.cs" />
     <Compile Include="HTTP\CallManager.cs" />
+    <Compile Include="Managers\PowerstatsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\PowerstatsService.cs" />
     <Compile Include="Services\SingleIDService.cs" />
     <Compile Include="Services\NameService.cs" />
     <Compile Include="Tests\NameTests.cs" />
+    <Compile Include="Tests\PowerstatsManagerTests.cs" />
     <Compile Include="Tests\PowerstatsTests.cs" />
     <Compile Include="Tests\SingleIDTests.cs" />
   </ItemGroup>
