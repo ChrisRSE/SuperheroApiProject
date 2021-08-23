@@ -26,6 +26,7 @@ namespace SuperheroAPITests.HTTP
             var response = await _client.ExecuteAsync(request);
             Status = (int)response.StatusCode;
             HeaderResponse = response.Headers.ToList();
+            return response.Content;
         }
 
         public async Task<string> MakeNameRequestAsync(string name)
