@@ -86,6 +86,8 @@ namespace SuperheroAPITests.DataHandling
     public class Work
     {
         public string occupation { get; set; }
+
+        [JsonProperty(@"base")]
         public string _base { get; set; }
     }
 

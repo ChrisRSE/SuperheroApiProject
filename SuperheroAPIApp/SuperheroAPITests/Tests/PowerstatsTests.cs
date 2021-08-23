@@ -64,6 +64,7 @@ namespace SuperheroAPITests.Tests
         public void ReturnsCorrectSuperhero_WhenValidIDIsGiven()
         {
             Assert.That(_superheroGoodService.Json_response["name"].ToString(), Is.EqualTo("Batman"));
+
         }
 
         [Test]
@@ -71,6 +72,7 @@ namespace SuperheroAPITests.Tests
         public void ReturnsIntelligence100_WhenBatmanIDIsGiven()
         {
             Assert.That(_superheroGoodService.PowerstatDTO.Response.intelligence, Is.EqualTo("100"));
+
         }
 
         [Test]
