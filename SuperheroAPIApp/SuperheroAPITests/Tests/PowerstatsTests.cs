@@ -75,9 +75,37 @@ namespace SuperheroAPITests.Tests
 
         [Test]
         [Category("Happy Path")]
+        public void ReturnsStrength26_WhenBatmanIDIsGiven()
+        {
+            Assert.That(_superheroGoodService.PowerstatDTO.Response.strength, Is.EqualTo("26"));
+        }
+
+        [Test]
+        [Category("Happy Path")]
+        public void ReturnsSpeed27_WhenBatmanIDIsGiven()
+        {
+            Assert.That(_superheroGoodService.PowerstatDTO.Response.speed, Is.EqualTo("27"));
+        }
+
+        [Test]
+        [Category("Happy Path")]
         public void ReturnsDurability50_WhenBatmanIDIsGiven()
         {
             Assert.That(_superheroGoodService.PowerstatDTO.Response.durability, Is.EqualTo("50"));
+        }
+
+        [Test]
+        [Category("Happy Path")]
+        public void ReturnsPower47_WhenBatmanIDIsGiven()
+        {
+            Assert.That(_superheroGoodService.PowerstatDTO.Response.power, Is.EqualTo("47"));
+        }
+
+        [Test]
+        [Category("Happy Path")]
+        public void ReturnsCombat100_WhenBatmanIDIsGiven()
+        {
+            Assert.That(_superheroGoodService.PowerstatDTO.Response.combat, Is.EqualTo("100"));
         }
     }
 }
