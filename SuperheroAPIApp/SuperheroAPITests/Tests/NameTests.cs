@@ -7,7 +7,7 @@ namespace SuperheroAPITests.Tests
 {
     public class NameTests
     {
-        NameService  _nameGoodService;
+        NameService _nameGoodService;
         NameService _nameBadService;
 
         #region 0. Set Up
