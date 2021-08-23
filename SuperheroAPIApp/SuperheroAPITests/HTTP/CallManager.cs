@@ -30,7 +30,7 @@ namespace SuperheroAPITests.HTTP
         {
             var request = new RestRequest();
             request.AddHeader("Content-Type", "application/json");
-            request.Resource = $"search/{name.ToLower()}";
+            request.Resource = $"search/{name.ToLower().Trim()}";
             var response = await _client.ExecuteAsync(request);
             Status = (int)response.StatusCode;
             return response.Content;
