@@ -28,11 +28,32 @@ namespace SuperheroAPITests.Tests
             Assert.That(_nameGoodService.CallManager.Status, Is.EqualTo(200));
         }
 
+
         [Test]
         [Category("Happy Path")]
         public void CheckDetailsCorrectWithValidName()
         {
             Assert.That(_nameGoodService.CountNumberOfCharatcterVersions(), Is.EqualTo(3));
+        }
+
+        [Test]
+        [Category("Happy Path")]
+        public void WhenValidSuperheroNameIsUsed_Correct_MultipleiDsreturned()
+        {
+            Assert.That(_nameGoodService.Json_Response["results"][0]["id"].ToString(), Is.EqualTo("69"));
+            Assert.That(_nameGoodService.Json_Response["results"][1]["id"].ToString(), Is.EqualTo("70"));
+            Assert.That(_nameGoodService.Json_Response["results"][2]["id"].ToString(), Is.EqualTo("71"));
+        }
+
+        [Test]
+        [Category("Happy Path")]
+        public void WhenValidSuperheroNameIsUsed_Correct_DetailsProvided()
+        {
+            Assert.That(_nameGoodService.Json_Response["results"][1]["powerstats"]["intelligence"].ToString(), Is.EqualTo("100"));
+            Assert.That(_nameGoodService.Json_Response["results"][1]["powerstats"]["durability"].ToString(), Is.EqualTo("50"));
+            Assert.That(_nameGoodService.Json_Response["results"][1]["biography"]["full-name"].ToString(), Is.EqualTo("Bruce Wayne"));
+            Assert.That(_nameGoodService.Json_Response["results"][2]["biography"]["full-name"].ToString(), Is.EqualTo("Dick Grayson"));
+            Assert.That(_nameGoodService.Json_Response["results"][2]["powerstats"]["intelligence"].ToString(), Is.EqualTo("88"));
         }
 
         [Test]
@@ -42,6 +63,7 @@ namespace SuperheroAPITests.Tests
             var testNameService = new NameService();
             Assert.That(testNameService.CallManager.Status, Is.EqualTo(0));
         }
+
 
         [Test]
         [Category("Sad Path")]
