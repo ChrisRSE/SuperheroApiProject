@@ -13,6 +13,8 @@ namespace SuperheroAPITests.Tests
         SingleIDService _superheroGoodService;
         SingleIDService _superheroBadService;
 
+        #region 0. Set Up
+
         [OneTimeSetUp]
         public async Task OneTimeSetUpASync()
         {
@@ -21,6 +23,10 @@ namespace SuperheroAPITests.Tests
             await _superheroGoodService.MakeRequestAsync(70);
             await _superheroBadService.MakeRequestAsync(300_000_000);
         }
+
+        #endregion
+
+        #region 1. Verify correct HTTP status code
 
         [Test]
         [Category("Happy Path")]
@@ -49,6 +55,10 @@ namespace SuperheroAPITests.Tests
         {
             Assert.That(_superheroBadService.Json_response["error"].ToString(), Is.EqualTo("invalid id"));
         }
+
+        #endregion
+
+        #region 2. Verify response payload
 
         [Test]
         [Category("Sad Path")]
@@ -133,6 +143,150 @@ namespace SuperheroAPITests.Tests
             Assert.That(_superheroGoodService.SingleIdDTO.Response.connections.groupaffiliation, Is.EqualTo("Batman Family, Batman Incorporated, Justice League, Outsiders, Wayne Enterprises, Club of Heroes, formerly White Lantern Corps, Sinestro Corps"));
             Assert.That(_superheroGoodService.SingleIdDTO.Response.connections.relatives.Contains("Martha Wayne"));
         }
+
+        [Test]
+        [Category("Happy Path")]
+        public void TestJsonResponseHeaders_ContainCorrectHeaderNames()
+        {
+            Assert.That(_superheroGoodService.Json_response.ContainsKey("response"));
+            Assert.That(_superheroGoodService.Json_response.ContainsKey("id"));
+            Assert.That(_superheroGoodService.Json_response.ContainsKey("name"));
+            Assert.That(_superheroGoodService.Json_response.ContainsKey("powerstats"));
+            Assert.That(_superheroGoodService.Json_response.ContainsKey("biography"));
+            Assert.That(_superheroGoodService.Json_response.ContainsKey("appearance"));
+            Assert.That(_superheroGoodService.Json_response.ContainsKey("work"));
+            Assert.That(_superheroGoodService.Json_response.ContainsKey("connections"));
+            Assert.That(_superheroGoodService.Json_response.ContainsKey("image"));
+        }
+
+        [Test]
+        [Category("Happy Path")]
+        public void TestIDResponsePowerstats_ContainCorrectSubheaderNames()
+        {
+            Assert.That(_superheroGoodService.IdResponse.Contains("intelligence"));
+            Assert.That(_superheroGoodService.IdResponse.Contains("strength"));
+            Assert.That(_superheroGoodService.IdResponse.Contains("speed"));
+            Assert.That(_superheroGoodService.IdResponse.Contains("durability"));
+            Assert.That(_superheroGoodService.IdResponse.Contains("power"));
+            Assert.That(_superheroGoodService.IdResponse.Contains("combat"));
+        }
+
+        [Test]
+        [Category("Happy Path")]
+        public void TestIDResponseBiography_ContainCorrectSubheaderNames()
+        {
+            Assert.That(_superheroGoodService.IdResponse.Contains("full-name"));
+            Assert.That(_superheroGoodService.IdResponse.Contains("alter-egos"));
+            Assert.That(_superheroGoodService.IdResponse.Contains("aliases"));
+            Assert.That(_superheroGoodService.IdResponse.Contains("place-of-birth"));
+            Assert.That(_superheroGoodService.IdResponse.Contains("first-appearance"));
+            Assert.That(_superheroGoodService.IdResponse.Contains("publisher"));
+            Assert.That(_superheroGoodService.IdResponse.Contains("alignment"));
+        }
+
+        [Test]
+        [Category("Happy Path")]
+        public void TestIDResponseAppearance_ContainCorrectSubheaderNames()
+        {
+            Assert.That(_superheroGoodService.IdResponse.Contains("gender"));
+            Assert.That(_superheroGoodService.IdResponse.Contains("race"));
+            Assert.That(_superheroGoodService.IdResponse.Contains("height"));
+            Assert.That(_superheroGoodService.IdResponse.Contains("weight"));
+            Assert.That(_superheroGoodService.IdResponse.Contains("eye-color"));
+            Assert.That(_superheroGoodService.IdResponse.Contains("hair-color"));
+        }
+
+
+        [Test]
+        [Category("Happy Path")]
+        public void TestIDResponseWork_ContainCorrectSubheaderNames()
+        {
+            Assert.That(_superheroGoodService.IdResponse.Contains("occupation"));
+            Assert.That(_superheroGoodService.IdResponse.Contains("base"));
+        }
+
+        [Test]
+        [Category("Happy Path")]
+        public void TestIDResponseConnections_ContainCorrectSubheaderNames()
+        {
+            Assert.That(_superheroGoodService.IdResponse.Contains("group-affiliation"));
+            Assert.That(_superheroGoodService.IdResponse.Contains("relatives"));
+        }
+
+        #endregion
+
+        #region 3. Verify response headers
+        [Test]
+        [Category("Happy Path")]
+        public void CheckHeaderResponse_ReturnsCorrectAmountOfHeaders()
+        {
+            Assert.That(_superheroGoodService.CallManager.HeaderResponse.Count(), Is.EqualTo(20));
+        }
+
+        [Test]
+        [Category("Happy Path")]
+        public void CheckHeaderResponseConection_ReturnsKeepAlive()
+        {
+            Assert.That(_superheroGoodService.CallManager.HeaderResponse[0].ToString(), Is.EqualTo("Connection=keep-alive"));
+        }
+
+        [Test]
+        [Category("Happy Path")]
+        public void CheckHeaderResponseServer_ReturnsCloudflare()
+        {
+            Assert.That(_superheroGoodService.CallManager.HeaderResponse[18].ToString(), Is.EqualTo("Server=cloudflare"));
+        }
+
+        [Test]
+        [Category("Happy Path")]
+        public void CheckHeaderResponseXPoweredBy_ReturnsCorrectPHPValue()
+        {
+            Assert.That(_superheroGoodService.CallManager.HeaderResponse[19].ToString(), Is.EqualTo("X-Powered-By=PHP/7.2.34"));
+        }
+
+        [Test]
+        [Category("Happy Path")]
+        public void CheckHeaderAccessControlAllowCredentials_ReturnsFalse()
+        {
+            Assert.That(_superheroGoodService.CallManager.HeaderResponse[2].ToString(), Is.EqualTo("access-control-allow-credentials=false"));
+        }
+
+        [Test]
+        [Category("Happy Path")]
+        public void CheckHeaderResponseAccessControlAllowMethods_ReturnsGET()
+        {
+            Assert.That(_superheroGoodService.CallManager.HeaderResponse[3].ToString(), Is.EqualTo("access-control-allow-methods=GET"));
+        }
+
+        [Test]
+        [Category("Happy Path")]
+        public void CheckHeaderResponseCacheStatus_ReturnsDynamic()
+        {
+            Assert.That(_superheroGoodService.CallManager.HeaderResponse[9].ToString(), Is.EqualTo("CF-Cache-Status=DYNAMIC"));
+        }
+
+        [Test]
+        [Category("Happy Path")]
+        public void CheckHeaderResponseContentType_ReturnsCloudflare()
+        {
+            Assert.That(_superheroGoodService.CallManager.HeaderResponse[16].ToString(), Is.EqualTo("Content-Type=application/json"));
+        }
+
+        [Test]
+        [Category("Happy Path")]
+        public void CheckHeaderResponseContentEncoding_ReturnsNothing()
+        {
+            Assert.That(_superheroGoodService.CallManager.HeaderResponse[6].ToString(), Is.EqualTo("content-encoding="));
+        }
+
+        [Test]
+        [Category("Happy Path")]
+        public void CheckHeaderResponseVary_ReturnsAcceptEncoding()
+        {
+            Assert.That(_superheroGoodService.CallManager.HeaderResponse[7].ToString(), Is.EqualTo("vary=Accept-Encoding"));
+        }
+
+        #endregion
     }
 }
 
