@@ -221,27 +221,67 @@ namespace SuperheroAPITests.Tests
         public void CheckHeaderResponse_ReturnsCorrectAmountOfHeaders()
         {
             Assert.That(_superheroGoodService.CallManager.HeaderResponse.Count(), Is.EqualTo(20));
-            Assert.That(_superheroGoodService.CallManager.HeaderResponse[0].ToString(), Is.EqualTo("Connection=keep-alive"));
         }
 
         [Test]
         [Category("Happy Path")]
-        public void CheckHeaderResponseConection_ReturnsCorrectValue()
+        public void CheckHeaderResponseConection_ReturnsKeepAlive()
         {
             Assert.That(_superheroGoodService.CallManager.HeaderResponse[0].ToString(), Is.EqualTo("Connection=keep-alive"));
         }
 
+        [Test]
+        [Category("Happy Path")]
+        public void CheckHeaderResponseServer_ReturnsCloudflare()
+        {
+            Assert.That(_superheroGoodService.CallManager.HeaderResponse[18].ToString(), Is.EqualTo("Server=cloudflare"));
+        }
 
         [Test]
         [Category("Happy Path")]
-        public void CheckHeaderResponseContentEncoding_ReturnsCorrectValue()
+        public void CheckHeaderResponseXPoweredBy_ReturnsCorrectPHPValue()
+        {
+            Assert.That(_superheroGoodService.CallManager.HeaderResponse[19].ToString(), Is.EqualTo("X-Powered-By=PHP/7.2.34"));
+        }
+
+        [Test]
+        [Category("Happy Path")]
+        public void CheckHeaderAccessControlAllowCredentials_ReturnsFalse()
+        {
+            Assert.That(_superheroGoodService.CallManager.HeaderResponse[2].ToString(), Is.EqualTo("access-control-allow-credentials=false"));
+        }
+
+        [Test]
+        [Category("Happy Path")]
+        public void CheckHeaderResponseAccessControlAllowMethods_ReturnsGET()
+        {
+            Assert.That(_superheroGoodService.CallManager.HeaderResponse[3].ToString(), Is.EqualTo("access-control-allow-methods=GET"));
+        }
+
+        [Test]
+        [Category("Happy Path")]
+        public void CheckHeaderResponseCacheStatus_ReturnsDynamic()
+        {
+            Assert.That(_superheroGoodService.CallManager.HeaderResponse[9].ToString(), Is.EqualTo("CF-Cache-Status=DYNAMIC"));
+        }
+
+        [Test]
+        [Category("Happy Path")]
+        public void CheckHeaderResponseContentType_ReturnsCloudflare()
+        {
+            Assert.That(_superheroGoodService.CallManager.HeaderResponse[16].ToString(), Is.EqualTo("Content-Type=application/json"));
+        }
+
+        [Test]
+        [Category("Happy Path")]
+        public void CheckHeaderResponseContentEncoding_ReturnsNothing()
         {
             Assert.That(_superheroGoodService.CallManager.HeaderResponse[6].ToString(), Is.EqualTo("content-encoding="));
         }
 
         [Test]
         [Category("Happy Path")]
-        public void CheckHeaderResponseVary_ReturnsCorrectValue()
+        public void CheckHeaderResponseVary_ReturnsAcceptEncoding()
         {
             Assert.That(_superheroGoodService.CallManager.HeaderResponse[7].ToString(), Is.EqualTo("vary=Accept-Encoding"));
         }

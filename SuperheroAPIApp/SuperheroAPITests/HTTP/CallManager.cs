@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RestSharp;
 using Newtonsoft.Json.Linq;
+using System.Diagnostics;
 
 namespace SuperheroAPITests.HTTP
 {
@@ -25,6 +26,10 @@ namespace SuperheroAPITests.HTTP
             var response = await _client.ExecuteAsync(request);
             Status = (int)response.StatusCode;
             HeaderResponse = response.Headers.ToList();
+            foreach (var item in HeaderResponse)
+            {
+                Debug.WriteLine(item.ToString());
+            }
             return response.Content;
         }
 
