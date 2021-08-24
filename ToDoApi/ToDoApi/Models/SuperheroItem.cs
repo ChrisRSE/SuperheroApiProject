@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace SuperheroApi.Models
@@ -51,24 +52,22 @@ namespace SuperheroApi.Models
     {
         public int id { get; set; }
 
-        [JsonProperty("full-name")]
+        [JsonPropertyName("full-name")]
         public string fullname { get; set; }
 
-        [JsonProperty("alter-egos")]
+        [JsonPropertyName("alter-egos")]
         public string alteregos { get; set; }
-
         [NotMapped]
         public string[] aliases { get; set; }
 
-        [JsonProperty("place-of-birth")]
+        [JsonPropertyName("place-of-birth")]
         public string placeofbirth { get; set; }
 
-        [JsonProperty("first-appearance")]
+        [JsonPropertyName("first-appearance")]
         public string firstappearance { get; set; }
         public string publisher { get; set; }
         public string alignment { get; set; }
     }
-
     public class Appearance
     {
         public int id { get; set; }
@@ -78,9 +77,9 @@ namespace SuperheroApi.Models
         public string[] height { get; set; }
         [NotMapped]
         public string[] weight { get; set; }
-        [JsonProperty("eye-color")]
+        [JsonPropertyName("eye-color")]
         public string eyecolor { get; set; }
-        [JsonProperty("hair-color")]
+        [JsonPropertyName("hair-color")]
         public string haircolor { get; set; }
     }
 
@@ -89,7 +88,7 @@ namespace SuperheroApi.Models
         public int id { get; set; }
         public string occupation { get; set; }
 
-        [JsonProperty(@"base")]
+        [JsonPropertyName(@"_base")]
         public string _base { get; set; }
     }
 
@@ -97,7 +96,7 @@ namespace SuperheroApi.Models
     {
         public int id { get; set; }
 
-        [JsonProperty("group-affiliation")]
+        [JsonPropertyName("group-affiliation")]
         public string groupaffiliation { get; set; }
         public string relatives { get; set; }
     }

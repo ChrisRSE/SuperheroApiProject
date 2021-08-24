@@ -9,46 +9,55 @@ using SuperheroApi.Models;
 
 namespace ToDoApi.Controllers
 {
-    [Route("api/SuperheroItems")]
+    [Route("api/SuperheroItems/powerstats")]
     [ApiController]
-    public class SuperheroItemsController : ControllerBase
+    public class PowerStatsController : ControllerBase
     {
         private readonly SuperheroContext _context;
 
-        public SuperheroItemsController(SuperheroContext context)
+        public PowerStatsController(SuperheroContext context)
         {
             _context = context;
         }
 
-        // GET: api/SuperheroItems
+        // GET: api/PowerStats
         [HttpGet]
         public async Task<ActionResult<IEnumerable<SuperheroItem>>> GetSuperheroItems()
         {
             return await _context.SuperheroItems.ToListAsync();
         }
 
-        // GET: api/SuperheroItems/5
+        // GET: api/PowerStats/5
         [HttpGet("{id}")]
         public async Task<ActionResult<SuperheroItem>> GetSuperheroItem(int id)
         {
             var superheroItem = await _context.SuperheroItems.Include(i => i.powerstats)
-                .Include(i => i.appearance)
-                .Include(i => i.biography)
-                .Include(i => i.connections)
-                .Include(i => i.image)
-                .Include(i => i.work)
-                .Where(i => i.id == id).FirstOrDefaultAsync();
+               .Where(i => i.id == id).FirstOrDefaultAsync();
+
+            var superheroItem2 = await _context.SuperheroItems.Include(i => i.powerstats)
+                .Where(i => i.id == id).Select(i =>
+                new
+                {
+                    i.response,
+                    i.id,
+                    i.name,
+                    i.powerstats.intelligence,
+                    i.powerstats.strength,
+                    i.powerstats.speed,
+                    i.powerstats.durability,
+                    i.powerstats.power,
+                    i.powerstats.combat
+                }).FirstOrDefaultAsync();
 
             if (superheroItem == null)
             {
-
                 return NotFound();
             }
 
             return superheroItem;
         }
 
-        // PUT: api/SuperheroItems/5
+        // PUT: api/PowerStats/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutSuperheroItem(int id, SuperheroItem superheroItem)
@@ -79,7 +88,7 @@ namespace ToDoApi.Controllers
             return NoContent();
         }
 
-        // POST: api/SuperheroItems
+        // POST: api/PowerStats
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<SuperheroItem>> PostSuperheroItem(SuperheroItem superheroItem)
@@ -90,7 +99,7 @@ namespace ToDoApi.Controllers
             return CreatedAtAction("GetSuperheroItem", new { id = superheroItem.id }, superheroItem);
         }
 
-        // DELETE: api/SuperheroItems/5
+        // DELETE: api/PowerStats/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSuperheroItem(int id)
         {
