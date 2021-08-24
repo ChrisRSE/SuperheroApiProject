@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using TodoApi.Models;
+using SuperheroApi.Models;
 
 namespace TodoApi
 {
@@ -22,7 +22,7 @@ namespace TodoApi
         {
             services.AddControllers();
 
-            services.AddDbContext<TodoContext>(opt =>
+            services.AddDbContext<SuperheroContext>(opt =>
                                                opt.UseInMemoryDatabase("TodoList"));
             //services.AddSwaggerGen(c =>
             //{
