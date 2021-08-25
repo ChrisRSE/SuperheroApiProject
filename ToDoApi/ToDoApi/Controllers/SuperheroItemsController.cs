@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SuperheroApi.Models;
+using ToDoApi.Models;
 
 namespace ToDoApi.Controllers
 {
@@ -19,12 +20,71 @@ namespace ToDoApi.Controllers
         {
             _context = context;
         }
+        
+
+
+        // GET: api/PowerStats/5
+        [HttpGet("{id}/Powerstats")]
+        public async Task<ActionResult<PowerstatsDTO>> GetSuperheroPowerstats(int id)
+        {
+            var superheroItem = await _context.SuperheroItems.Include(i => i.powerstats)
+                .Where(i => i.id == id).Select(i =>
+                new PowerstatsDTO
+                {
+                    response = i.response,
+                    id = i.id,
+                    name = i.name,
+                    intelligence = i.powerstats.intelligence,
+                    strength = i.powerstats.strength,
+                    speed = i.powerstats.speed,
+                    durability = i.powerstats.durability,
+                    power = i.powerstats.power,
+                    combat = i.powerstats.combat
+                }).FirstOrDefaultAsync();
+
+            if (superheroItem == null)
+            {
+                return NotFound();
+            }
+
+            return superheroItem;
+        }
 
         // GET: api/SuperheroItems
         [HttpGet]
         public async Task<ActionResult<IEnumerable<SuperheroItem>>> GetSuperheroItems()
         {
             return await _context.SuperheroItems.ToListAsync();
+        }
+
+        [HttpGet("search/{name}")]
+        public async Task<ActionResult<ExperimentAnon>> GetSuperheroItemByName(string name)
+        {
+            ExperimentAnon ea = new ExperimentAnon();
+
+            var superHeroList = await _context.SuperheroItems
+                .Include(i => i.powerstats)
+                .Include(i => i.appearance)
+                .Include(i => i.biography)
+                .Include(i => i.connections)
+                .Include(i => i.image)
+                .Include(i => i.work)
+                .Where(i => i.name.Contains(name)).ToListAsync();
+
+            if (superHeroList == null || superHeroList.Count < 0)
+            {
+                return NotFound();
+            }
+
+            ea.response = superHeroList[0].response;
+            ea.resultsfor = superHeroList[0].name;
+            ea.results = new List<SuperheroItem>();
+            foreach (var item in superHeroList)
+            {
+                ea.results.Add(item);
+            }
+            
+            return ea;
         }
 
         // GET: api/SuperheroItems/5

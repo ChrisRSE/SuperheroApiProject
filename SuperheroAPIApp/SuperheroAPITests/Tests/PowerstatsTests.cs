@@ -115,6 +115,8 @@ namespace SuperheroAPITests.Tests
         {
             Assert.That(_superheroGoodService.PowerstatDTO.Response.combat, Is.EqualTo("100"));
         }
+        [Test]
+        [Category("Happy Path")]
         public void TestJsonResponseHeaders_ContainCorrectHeaderNames()
         {
             Assert.That(_superheroGoodService.Json_response.ContainsKey("intelligence"));

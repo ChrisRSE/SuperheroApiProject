@@ -25,18 +25,6 @@ namespace SuperheroApi.Models
      
     }
 
-    public class Result
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public Powerstats powerstats { get; set; }
-        public Biography biography { get; set; }
-        public Appearance appearance { get; set; }
-        public Work work { get; set; }
-        public Connections connections { get; set; }
-        public Image image { get; set; }
-    }
-
     public class Powerstats
     {
         public int id { get; set; }
@@ -58,7 +46,7 @@ namespace SuperheroApi.Models
         [JsonPropertyName("alter-egos")]
         public string alteregos { get; set; }
         [NotMapped]
-        public string[] aliases { get; set; }
+        public ICollection<string> aliases { get; set; }
 
         [JsonPropertyName("place-of-birth")]
         public string placeofbirth { get; set; }
@@ -74,9 +62,9 @@ namespace SuperheroApi.Models
         public string gender { get; set; }
         public string race { get; set; }
         [NotMapped]
-        public string[] height { get; set; }
+        public ICollection<string> height { get; set; }
         [NotMapped]
-        public string[] weight { get; set; }
+        public ICollection<string> weight { get; set; }
         [JsonPropertyName("eye-color")]
         public string eyecolor { get; set; }
         [JsonPropertyName("hair-color")]
