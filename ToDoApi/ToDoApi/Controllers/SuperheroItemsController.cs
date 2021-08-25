@@ -58,9 +58,9 @@ namespace ToDoApi.Controllers
         }
 
         [HttpGet("search/{name}")]
-        public async Task<ActionResult<ExperimentAnon>> GetSuperheroItemByName(string name)
+        public async Task<ActionResult<SuperHeroNameSearchItem>> GetSuperheroItemByName(string name)
         {
-            ExperimentAnon ea = new ExperimentAnon();
+            SuperHeroNameSearchItem HeroSearch = new SuperHeroNameSearchItem();
 
             var superHeroList = await _context.SuperheroItems
                 .Include(i => i.powerstats)
@@ -71,20 +71,20 @@ namespace ToDoApi.Controllers
                 .Include(i => i.work)
                 .Where(i => i.name.Contains(name)).ToListAsync();
 
-            if (superHeroList == null || superHeroList.Count < 0)
+            if (superHeroList == null || superHeroList.Count <= 0)
             {
                 return NotFound();
             }
 
-            ea.response = superHeroList[0].response;
-            ea.resultsfor = superHeroList[0].name;
-            ea.results = new List<SuperheroItem>();
-            foreach (var item in superHeroList)
+            HeroSearch.response = superHeroList[0].response;
+            HeroSearch.resultsfor = name;
+            HeroSearch.results = new List<SuperheroItem>();
+            foreach (var hero in superHeroList)
             {
-                ea.results.Add(item);
+                HeroSearch.results.Add(hero);
             }
             
-            return ea;
+            return HeroSearch;
         }
 
         // GET: api/SuperheroItems/5
